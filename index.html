@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="container">
+    <article class="start">
+        <h1 class="mt-5 text-center">휴대폰 케이스 MBTI</h1>
+        <button type="button" class="btn btn-outline-dark" onclick="start();">테스트 시작하기</button>
+    </article>
+    <article class="question">
+        <div class="progress mt-5">
+            <div class="progress-bar" role="progressbar" style="width: calc(100/12*1%)"></div>
+        </div>
+        <h2 id="title" class="text-center mt-5">문제</h2>
+        <input id="type" type="hidden" value="EI">
+
+        <button id="A" type="button" class="btn btn-outline-primary mt-5">대답A</button>
+        <button id="B" type="button" class="btn btn-outline-dark mt-5">대답B</button>
+    </article>
+    <article class="result">
+        <img id="img" class="rounded-circle mt-5" src="flower.jpg" alt="flower">
+        <h2 id="flower" class="text-center mt-5">식물이름</h2>
+        <h3 id="explain" class="text-center mt-5">설명</h3>
+
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+        <div class="share addthis_inline_share_toolbox"></div>
+
+
+    </article>
+    <input type="hidden" id="EI" value="0">
+    <input type="hidden" id="SN" value="0">
+    <input type="hidden" id="TF" value="0">
+    <input type="hidden" id="JP" value="0">
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+
+    <script>
+        var num = 1;
+        var q = {
+            1: { "title": "문제 1번", "type": "EI", "A": "E", "B": "I" },
+            2: { "title": "문제 2번", "type": "EI", "A": "E", "B": "I" },
+            3: { "title": "문제 3번", "type": "EI", "A": "E", "B": "I" },
+            4: { "title": "문제 4번", "type": "SN", "A": "S", "B": "N" },
+            5: { "title": "문제 5번", "type": "SN", "A": "S", "B": "N" },
+            6: { "title": "문제 6번", "type": "SN", "A": "S", "B": "N" },
+            7: { "title": "문제 7번", "type": "TF", "A": "T", "B": "F" },
+            8: { "title": "문제 8번", "type": "TF", "A": "T", "B": "F" },
+            9: { "title": "문제 9번", "type": "TF", "A": "T", "B": "F" },
+            10: { "title": "문제 10번", "type": "JP", "A": "J", "B": "P" },
+            11: { "title": "문제 11번", "type": "JP", "A": "J", "B": "P" },
+            12: { "title": "문제 12번", "type": "JP", "A": "J", "B": "P" }
+        }
+        var result = {
+            "ISTJ": { "flower": "꽃1", "explain": "꽃1설명", "img": "flower.jpg" },
+            "ISFJ": { "flower": "꽃2", "explain": "꽃2설명", "img": "flower.jpg" },
+            "INFJ": { "flower": "꽃3", "explain": "꽃3설명", "img": "flower.jpg" },
+            "INTJ": { "flower": "꽃4", "explain": "꽃4설명", "img": "flower.jpg" },
+            "ISTP": { "flower": "꽃5", "explain": "꽃5설명", "img": "flower.jpg" },
+            "ISFP": { "flower": "꽃6", "explain": "꽃6설명", "img": "flower.jpg" },
+            "INFP": { "flower": "꽃7", "explain": "꽃7설명", "img": "flower.jpg" },
+            "INTP": { "flower": "꽃8", "explain": "꽃8설명", "img": "flower.jpg" },
+            "ESTP": { "flower": "꽃9", "explain": "꽃9설명", "img": "flower.jpg" },
+            "ESFP": { "flower": "꽃10", "explain": "꽃10설명", "img": "flower.jpg" },
+            "ENFP": { "flower": "꽃11", "explain": "꽃11설명", "img": "flower.jpg" },
+            "ENTP": { "flower": "꽃12", "explain": "꽃12설명", "img": "flower.jpg" },
+            "ESTJ": { "flower": "꽃13", "explain": "꽃13설명", "img": "flower.jpg" },
+            "ESFJ": { "flower": "꽃14", "explain": "꽃14설명", "img": "flower.jpg" },
+            "ENFJ": { "flower": "꽃15", "explain": "꽃15설명", "img": "flower.jpg" },
+            "ENTJ": { "flower": "꽃16", "explain": "꽃16설명", "img": "flower.jpg" }
+        }
+
+        function start() {
+            $(".start").hide();
+            $(".question").show();
+            next();
+        }
+        $("#A").click(function () {
+            var type = $("#type").val();
+            var preValue = $("#" + type).val();
+            $("#" + type).val(parseInt(preValue) + 1);
+            next();
+        });
+        $("#B").click(function () {
+            next();
+        });
+        function next() {
+            if (num == 13) {
+                $(".question").hide();
+                $(".result").show();
+                var mbti = "";
+                ($("#EI").val() < 2) ? mbti += "I" : mbti += "E";
+                ($("#SN").val() < 2) ? mbti += "N" : mbti += "S";
+                ($("#TF").val() < 2) ? mbti += "F" : mbti += "T";
+                ($("#JP").val() < 2) ? mbti += "P" : mbti += "J";
+                alert(mbti);
+                $("#img").attr("src", result[mbti]["img"]);
+                $("#flower").html(result[mbti]["flower"]);
+                $("#explain").html(result[mbti]["explain"]);
+
+
+
+                /*if ($("#EI").val() < 2) {
+                mbti = mbti + "I"
+            } else {
+                mbti = mbti + "E";
+            }*/
+            } else {
+                $(".progress-bar").attr('style', 'width: calc(100/12*' + num + '%)');
+                $("#title").html(q[num]["title"]);
+                $("#type").val(q[num]["type"]);
+                $("#A").val(q[num]["A"]);
+                $("#B").val(q[num]["B"]);
+                num++;
+
+            }
+
+        }
+    </script>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-61000302f4cfac19"></script>
+
+</body>
+
+</html>
