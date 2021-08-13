@@ -14,6 +14,14 @@
             button {width: 100%; border: 0; background: #fff;}
             button:focus {border: 0; outline: none;}
           </style>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap');
+    </style>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+    </style>
 </head>
 
 <body class="container">
@@ -28,17 +36,27 @@
        <!-- <button type="button" class="btn btn-outline-dark" onclick="start();">TEST START!</button>-->
     </article>
     <article class="interest">
+        <h5 class="titleNumber">Q1</h5>
       <h6 class="text-center question_text interest_text"> Where would you like to go shopping?</h6>
         <button type="button" onclick="interstart();" class="btn_text btn btn-outline-primary mt-5">Myeongdong, Seoul, South Korea</button>
         <button type="button" onclick="interstart();" class="btn_text btn btn-outline-dark mt-5">La Vallee Village, Paris, France</button>
         <button type="button" onclick="interstart();" class="btn_text btn btn-outline-primary mt-5">Orchard Road, Singapore</button>
         <button type="button" onclick="interstart();" class="btn_text btn btn-outline-dark mt-5">Chelsea Market, New York City, US</button>
-        <div class="progress mt-5">
-            <div class="bar progress-bar progress-bar-striped" role="progressbar" style="width: calc(100/13*1%)" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="progress mt-5 " style="height: 8px;">
+            <div class="bar progress-bar progress-bar-striped" role="progressbar" style="width: calc(100/13*1%)" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
+              
+
+            </div>
+            
+            <div>
+                <img class="mt-12 cart" src="/JEPG/cart.png" alt="earth">
+            </div>
+          
         </div>
+        <h5 class="displayNumber">1/13</h5>
     </article>
     <article class="question">
-      
+        <span class="titleNumber">Q<span id="dataTitle" class="titleNumber"></span></span>
         <h2 id="title" class="question_text text-center mt-5">문제</h2>
         <input id="type" type="hidden" value="EI">
         <!--<div class="progress">
@@ -46,12 +64,17 @@
           </div>
         <button id="A" type="button" class="btn_text btn btn-outline-primary mt-5">대답A</button>
         <button id="B" type="button" class="btn_text btn btn-outline-dark mt-5">대답B</button>
-        <div class="progress mt-5">
-            <div class="bar progress-bar progress-bar-striped" role="progressbar" style="width: calc(100/13*1%)" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="progress mt-5" style="height: 8px;">
+            <div class="bar progress-bar progress-bar-striped" role="progressbar" style="width: calc(100/13*1%)"  aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" "height: 1px;"></div><div>
+                <img class="mt-12 cart" src="/JEPG/cart.png" alt="earth">
+            </div>
+            <br>
+                  
             
            
             
         </div>
+        <span class="displayNumber"><span id="data" class="displayNumber"></span>/13</span>
     </article>
     <article class="calculate">
         <div class="text-center">
@@ -60,7 +83,7 @@
       </article>
     <article class="result">
         <div class="text-center">
-            <h2 id="flower" class="result_type text-center mt-5">폰 이름</h2>
+            <h2 id="flower" class="result_name result_type text-center mt-5">폰 이름</h2>
         <img id="img" class="mt-6" src="flower.jpg" alt="flower"></div>
         
         <h3 id="explain" class="container text-center"></h3>
@@ -89,23 +112,26 @@
         crossorigin="anonymous"></script>
      
     <script>
-        var num = 1;
+      var num = 1;
+      var number = 1;
         var q = {
-            1: { "title": "Dummy data, easter egg", "type": "EI", "A": "Hello My name is suyoung lee, I am a developer", "B": "I'm an internationall student who is studying at UTS." },
-            2: { "title": "When I shop, I normally", "type": "EI", "A": "look around for some time and go into stores looking interesting", "B": "make a shopping list in advance and get things from there" },
-            3: { "title": "If I get lose in the mall and can't find the store I like to visit, I will...", "type": "EI", "A": "pick up a location map inside the mall", "B": "ask the man on the information desk for help" },
-            4: { "title": "it crossed my mind that I like to buy some gifts for my mom, I would ...", "type": "EI", "A": "buy the vacuum cleaner she needed recently", "B": "buy a necklace that looks good on my mom" },
-            5: { "title": "I don't have anything specific in mind and I am just browsing. A sales clerk approaches and asks, 'May I help you?' I would ...", "type": "SN", "A": "'Ooh... I feel pressured.' No, Thanks! :)", "B": "actively respond to her and get as many recommendations as possible" },
-            6: { "title": "When I am triggered to make an unplanned purchase, I would ...", "type": "SN", "A": "'It'll be ok to get just one,' make the payment directly and enjoy the moment", "B": "think 'I didn't plan it,' and just just pass by" }, //
-            7: { "title": "If I find a product on the shelf is the last one, and as I pick it up, someone is trying to snatch it, I will ... ", "type": "SN", "A": "let her take it and go shopping for other things", "B": "definitely get it even if I have to have bad arguments with her" }, //
-            8: { "title": "If I run into an old friend in the mall, I will ...", "type": "TF", "A": "say 'Hi!' but that's it avoiding starting the conversation", "B": "greet her with and enthusiastic 'Hi!' and catch up with her" },
-            9: { "title": "I and my friend go into a cafe in the mall and she starts talking about her concerns, I would ...", "type": "TF", "A": "comfort her from the bottom of my heart", "B": "give some practical and realistic advice to help her out" },
-            10: { "title": "Feeling hungry, I decide to go to a restaurant in the mall. I would ...", "type": "TF", "A": "enter one nearby that looks good", "B": "take time to search for good restaurants and find the best one" },
-            11: { "title": "When I have meals with my friend at the food court, I would ...", "type": "JP", "A": "tell what I like about the food and how I feel it in details", "B": "tell the most impressive one about the food" },
-            12: { "title": "A passer-by asks me where I got the dessert held in my hands. I would ...", "type": "JP", "A": "elaborate how to get there from my position", "B": "tell her a famous restaurant near the dessert shop" },
-            13: { "title": "Waiting for the bus after shopping, I would ...", "type": "JP", "A": "'What I'm gonna do at home is...' think about the rest of the schedule", "B" : "if I were a billionaire...' follow the stream of thoughts inside my mind" }
+            
+            1: { "title": "When I shop, I normally", "type": "EI", "A": "look around for some time and go into stores that look interesting", "B": "make a shopping list in advance and get things from there" },
+            2: { "title": "If I get lost in the mall and can't find the store I like to visit, I will...", "type": "EI", "A": "pick up a location map inside the mall", "B": "ask the person on the information desk for help" },
+            3: { "title": "It crossed my mind that I like to buy a gift for my mom, I would ...", "type": "EI", "A": "buy the vacuum cleaner she needed recently", "B": "buy a necklace that looks good on my mom" },
+            4: { "title": "I don't have anything specific in mind and I am just browsing. A sales clerk approaches and asks, 'May I help you?' I would ...", "type": "SN", "A": "'Ooh... I feel pressured.' No, Thanks! :)", "B": "actively respond to her and get as many recommendations as possible" },
+            5: { "title": "When I am triggered to make an unplanned purchase, I would ...", "type": "SN", "A": "'It'll be ok to get just one,' make the payment directly and enjoy the moment", "B": "think 'I didn't plan it,' and just just pass by" }, //
+            6: { "title": "If I find a product on the shelf is the last one, and as I pick it up, someone is trying to snatch it, I will ... ", "type": "SN", "A": "let her take it and go shopping for other things", "B": "definitely get it even if I have to have bad arguments with her" }, //
+            7: { "title": "If I run into an old friend in the mall, I will ...", "type": "TF", "A": "say 'Hi!' but that's it avoiding starting the conversation", "B": "greet her with and enthusiastic 'Hi!' and catch up with her" },
+            8: { "title": "my friend and I go into a cafe in the mall and she starts talking about her concerns, I would ...", "type": "TF", "A": "comfort her from the bottom of my heart", "B": "give some practical and realistic advice to help her out" },
+            9: { "title": "If I'm feeling hungry and I decide to go to a restaurant in the mall. I would ...", "type": "TF", "A": "enter one nearby that looks good", "B": "take time to search for good restaurants and find the best one" },
+            10: { "title": "When I have meals with my friend at the food court, I would ...", "type": "JP", "A": "tell what I like about the food and how I feel it in details", "B": "tell the most impressive one about the food" },
+            11: { "title": "A passer-by asks me where I got the dessert held in my hands. I would ...", "type": "JP", "A": "elaborate how to get there from my position", "B": "tell her a famous restaurant near the dessert shop" },
+            12: { "title": "Waiting for the bus after shopping, I would ...", "type": "JP", "A": "'What I'm gonna do at home is...' think about the rest of the schedule", "B" : "if I were a billionaire...' follow the stream of thoughts inside my mind" }
         }
         var result = {
+
+            
             "ISTJ": { "flower": "ISTJ", "explain": "", "img": "/result/ISTJ.png" },
             "ISFJ": { "flower": "ISFJ", "explain": "", "img": "/result/ISFJ.png" },
             "INFJ": { "flower": "INFJ", "explain": "", "img": "/result/INFJ.png" },
@@ -127,7 +153,7 @@
         function start() {
             $(".start").hide();
             $(".interest").show();
-            next();
+            //next();
         }
         function interstart() {
             $(".interest").hide();
@@ -139,6 +165,11 @@
             $(".result").show();
            // setTimeout();
         }
+
+        function number() {
+
+
+        }
         $("#A").click(function () {
             var type = $("#type").val();
             var preValue = $("#" + type).val();
@@ -149,7 +180,8 @@
             next();
         });
         function next() {
-            if (num == 14) {
+            
+            if (num == 13) {
                 $(".question").hide();
                 $(".calculate").show();
                 setTimeout(function(){
@@ -166,7 +198,7 @@
                 $("#flower").html(result[mbti]["flower"]);
                 $("#explain").html(result[mbti]["explain"]);
 
-
+               
 
                 /*if ($("#EI").val() < 2) {
                 mbti = mbti + "I"
@@ -174,13 +206,17 @@
                 mbti = mbti + "E";
             }*/
             } else {
-                $(".progress-bar").attr('style', 'width: calc(100/13*' + num + '%)');
+                $(".progress-bar").attr('style', 'width: calc(100/13*' + (num+1) + '%)');
+                $(".ball").attr('data', 'num++');
                 $("#title").html(q[num]["title"]);
                 $("#type").val(q[num]["type"]);
                 $("#A").html(q[num]["A"]);
                 $("#B").html(q[num]["B"]);
                 num++;
-
+                number++;
+                document.getElementById("data").innerHTML=num;
+                document.getElementById("dataTitle").innerHTML=number;
+    
             }
 
         }
