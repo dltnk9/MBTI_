@@ -72,14 +72,6 @@ article {
   margin-top: 5px;
 }
 
-.btn_text {
-  font-family: "Jua", sans-serif;
-
-  width: 288px;
-  margin: 0 auto;
-  font-size: 14px;
-}
-
 .question_text {
   font-family: "Jua", sans-serif;
   font-weight: bold;
@@ -141,4 +133,40 @@ article {
   font-size: 18px;
   text-align: center;
   margin-top: 40px;
+}
+
+.si {
+  font-family: "Jua", sans-serif;
+
+  color: black;
+
+  width: 288px;
+  margin: 0 auto;
+  font-size: 14px;
+  margin-top: 45px;
+}
+/*
+button:focus {
+  outline: 0;
+}
+
+button:hover {
+  color: white;
+}
+*/
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary:active:focus:not(:disabled):not(.disabled),
+.btn:focus,
+.btn:active,
+.btn:hover {
+  box-shadow: none !important;
+  outline: 0;
+}
+
+.FrameE {
+  background-color: #fef7dc;
+  opacity: 85%;
+  border-radius: 11px;
 }
