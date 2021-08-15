@@ -1,3 +1,3 @@
 # MBTI_
 
-https://flowermbti.netlify.app/
+https://polarolatest.netlify.app/
